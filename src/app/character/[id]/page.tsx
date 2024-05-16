@@ -20,8 +20,10 @@ const HomePage: React.FC = () => {
 
     // Load favorites from localStorage on mount
     useEffect(() => {
-        const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-        setFavorites(savedFavorites);
+        const savedFavorites = localStorage.getItem('favorites');
+        if (savedFavorites) {
+            setFavorites(JSON.parse(savedFavorites));
+        }
     }, []);
 
     // Save favorites to localStorage whenever they change
